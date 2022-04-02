@@ -24,7 +24,6 @@ public class UiManager : Singleton<UiManager>
     public void Display(State enteredState, Alignment alignment)
     {
         var name = enteredState.ToString();
-        name = name.Remove(name.IndexOf("State"), 5);
 
         if (alignment == Alignment.Left)
         {

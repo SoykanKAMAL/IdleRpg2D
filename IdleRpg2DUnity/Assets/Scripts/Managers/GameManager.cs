@@ -15,9 +15,18 @@ public class GameManager : Singleton<GameManager>
     public GameInitState gameInitState;
     
     public BattleState battleState;
+
+    public Player player;
+
+    public GameObject playerGo;
+    
+    [Header("Game Settings")]
+    public int DifficultyIncreasePerLevelAsPercentage = 10;
     
     private void Start()
     {
+        playerGo = new GameObject("Player");
+        player.InitStats();
         gameManagerStateMachine = new StateMachine();
 
         gameInitState = new GameInitState(this, gameManagerStateMachine);

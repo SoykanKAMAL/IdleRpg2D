@@ -665,6 +665,20 @@ MonoBehaviour:
   SpawnableEnemies:
   - {fileID: 11400000, guid: 1fbb3c2f10ee7554c8308a13f61bfdc0, type: 2}
   - {fileID: 11400000, guid: c959220f9a6940c429486fdba3ed3a1a, type: 2}
+  Prefixes:
+  - Mighty
+  - Scary
+  - Crazy
+  - Dangerous
+  - Lonely
+  - 
+  Suffixes:
+  - 
+  - I
+  - II
+  - III
+  - IV
+  - V
 --- !u!1 &1126773822
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,6 +722,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da4625011c1f7e448018fd75d31df3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 11400000, guid: fccd3bfbaefb51a49bdf2b683ff9a42b, type: 2}
+  DifficultyIncreasePerLevelAsPercentage: 10
 --- !u!1 &1489260824
 GameObject:
   m_ObjectHideFlags: 0

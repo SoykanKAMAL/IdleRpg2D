@@ -6,5 +6,4 @@ using UnityEngine;
 public class Enemy : CharacterStats
 {
     public GameObject prefab;
-    public string name;
 }

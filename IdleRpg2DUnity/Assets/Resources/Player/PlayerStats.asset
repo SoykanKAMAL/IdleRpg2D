@@ -9,15 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d38e8085b613664e975e6429d32c944, type: 3}
-  m_Name: Slime
+  m_Script: {fileID: 11500000, guid: b4f54f871668765408dda2b807d6902a, type: 3}
+  m_Name: PlayerStats
   m_EditorClassIdentifier: 
-  name: Slime
-  maxHealth: 100
-  currentHealth: 0
-  armor: 1
-  attackDamage: 3
-  attackSpeed: 2
-  spellDamage: 10
+  name: Player
+  maxHealth: 120
+  currentHealth: 120
+  armor: 10
+  attackDamage: 15
+  attackSpeed: 1
+  spellDamage: 100
   spellSpeed: 5
-  prefab: {fileID: 2918009858445088012, guid: 7b6717c4c4d9b9e47a244070127ba1dc, type: 3}
