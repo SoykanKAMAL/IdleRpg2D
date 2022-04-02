@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Slime
   maxHealth: 100
-  currentHealth: 0
+  currentHealth: 100
   armor: 1
   attackDamage: 3
   attackSpeed: 2

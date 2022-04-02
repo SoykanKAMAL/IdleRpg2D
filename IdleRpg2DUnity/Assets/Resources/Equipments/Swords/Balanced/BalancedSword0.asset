@@ -9,14 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c541c71869c6ee940b4e0035868fcaf2, type: 3}
-  m_Name: PlayerRpgStats
+  m_Script: {fileID: 11500000, guid: aa0785e291aa9e44ea85a1060a0fbc56, type: 3}
+  m_Name: BalancedSword0
   m_EditorClassIdentifier: 
-  CurrentPoints: 0
-  Strength: 1
-  Dexterity: 1
-  Intelligence: 1
-  Vitality: 1
-  Wisdom: 1
-  Agility: 1
-  Charisma: 1
+  mergeResult: {fileID: 11400000, guid: dae3072997a3ce649a32ae73289e3bde, type: 2}
+  name: Broken Sword
+  Effects: []

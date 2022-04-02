@@ -57,4 +57,10 @@ public abstract class State
     {
         UiManager.I.Display(this, alignment);
     }
+    
+    // ToString override
+    public override string ToString()
+    {
+        return this.GetType().Name;
+    }
 }

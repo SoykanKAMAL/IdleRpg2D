@@ -47,7 +47,7 @@ public class BattleState : State
         #region StartFight
 
         enemyAttacker.Setup(m_CurrentEnemyStats, playerAttacker);
-        playerAttacker.Setup(gameManager.player, enemyAttacker);
+        playerAttacker.Setup(gameManager.player.currentStats, enemyAttacker);
 
         playerAttacker.StartAttacking();
         enemyAttacker.StartAttacking();

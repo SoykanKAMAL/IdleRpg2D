@@ -12,13 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f403203fe8e6b74b8367c3204e0e507, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  name: 
-  maxHealth: 0
-  currentHealth: 0
-  armor: 0
-  attackDamage: 0
-  attackSpeed: 0
-  spellDamage: 0
-  spellSpeed: 0
   baseStats: {fileID: 11400000, guid: 650ef40c4b087de40b8ed68cadef266c, type: 2}
+  currentStats: {fileID: 0}
   rpgStats: {fileID: 11400000, guid: ed666c90a8436b246adc2dfbf1ab5a55, type: 2}
+  weapon: {fileID: 11400000, guid: 1c0448fc38d1b6d40b1c89642a1784e8, type: 2}
