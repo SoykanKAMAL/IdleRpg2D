@@ -21,3 +21,4 @@ MonoBehaviour:
   spellDamage: 10
   spellSpeed: 5
   prefab: {fileID: 2918009858445088012, guid: 7b6717c4c4d9b9e47a244070127ba1dc, type: 3}
+  nameGenerator: {fileID: 11400000, guid: 9eabda3ad746da04291ae925a8bc8ff1, type: 2}

@@ -16,9 +16,10 @@ public class UiManager : Singleton<UiManager>
     [SerializeField] private TextMeshProUGUI leftText = null;
     [SerializeField] private TextMeshProUGUI rightText = null;
 
-    public static Action OnEndCurrentState;
     public Button endStateButton;
     public GameObject playerStatsPanel;
+    public GameObject enemyStatsPanel;
+    public TextMeshProUGUI stageNoText;
 
     public void Display(State enteredState, Alignment alignment)
     {
@@ -36,7 +37,7 @@ public class UiManager : Singleton<UiManager>
 
     private void OnEnable()
     {
-        endStateButton.onClick.AddListener(() => { OnEndCurrentState?.Invoke(); });
+        endStateButton.onClick.AddListener(() => { State.OnStateChanged?.Invoke(); });
     }
 
     private void OnDisable()
@@ -47,24 +48,55 @@ public class UiManager : Singleton<UiManager>
     private void Update()
     {
         ShowPlayerStats();
+        ShowEnemyStats();
+        UpdateStageNoUi();
     }
 
     private void ShowPlayerStats()
     {
         playerStatsPanel.SetActive(true);
+        playerStatsPanel.transform.Find("Title").GetComponent<TextMeshProUGUI>().text =
+            "---" + GameManager.I.player.CurrentStats.name.ToString() + "---";
         playerStatsPanel.transform.Find("MaxHealth").GetComponent<TextMeshProUGUI>().text =
-            "MaxHealth: " + GameManager.I.player.currentStats.maxHealth.ToString();
+            "MaxHealth: " + GameManager.I.player.CurrentStats.maxHealth.ToString();
         playerStatsPanel.transform.Find("CurrentHealth").GetComponent<TextMeshProUGUI>().text =
-            "CurrentHealth: " + GameManager.I.player.currentStats.currentHealth.ToString();
+            "CurrentHealth: " + GameManager.I.player.CurrentStats.currentHealth.ToString();
         playerStatsPanel.transform.Find("Armor").GetComponent<TextMeshProUGUI>().text =
-            "Armor: " + GameManager.I.player.currentStats.armor.ToString();
+            "Armor: " + GameManager.I.player.CurrentStats.armor.ToString();
         playerStatsPanel.transform.Find("AttackDamage").GetComponent<TextMeshProUGUI>().text =
-            "AttackDamage: " + GameManager.I.player.currentStats.attackDamage.ToString();
+            "AttackDamage: " + GameManager.I.player.CurrentStats.attackDamage.ToString();
         playerStatsPanel.transform.Find("AttackSpeed").GetComponent<TextMeshProUGUI>().text =
-            "AttackSpeed: " + GameManager.I.player.currentStats.attackSpeed.ToString();
+            "AttackSpeed: " + GameManager.I.player.CurrentStats.attackSpeed.ToString();
         playerStatsPanel.transform.Find("SpellDamage").GetComponent<TextMeshProUGUI>().text =
-            "SpellDamage: " + GameManager.I.player.currentStats.spellDamage.ToString();
+            "SpellDamage: " + GameManager.I.player.CurrentStats.spellDamage.ToString();
         playerStatsPanel.transform.Find("SpellSpeed").GetComponent<TextMeshProUGUI>().text =
-            "SpellSpeed: " + GameManager.I.player.currentStats.spellSpeed.ToString();
+            "SpellSpeed: " + GameManager.I.player.CurrentStats.spellSpeed.ToString();
+    }
+    
+    private void ShowEnemyStats()
+    {
+        if(EnemyManager.I.enemyAttacker == null) return;
+        enemyStatsPanel.SetActive(true);
+        enemyStatsPanel.transform.Find("Title").GetComponent<TextMeshProUGUI>().text =
+            "---" + EnemyManager.I.enemyAttacker.stats.name.ToString() + "---";
+        enemyStatsPanel.transform.Find("MaxHealth").GetComponent<TextMeshProUGUI>().text =
+            "MaxHealth: " + EnemyManager.I.enemyAttacker.stats.maxHealth.ToString();
+        enemyStatsPanel.transform.Find("CurrentHealth").GetComponent<TextMeshProUGUI>().text =
+            "CurrentHealth: " + EnemyManager.I.enemyAttacker.stats.currentHealth.ToString();
+        enemyStatsPanel.transform.Find("Armor").GetComponent<TextMeshProUGUI>().text =
+            "Armor: " + EnemyManager.I.enemyAttacker.stats.armor.ToString();
+        enemyStatsPanel.transform.Find("AttackDamage").GetComponent<TextMeshProUGUI>().text =
+            "AttackDamage: " + EnemyManager.I.enemyAttacker.stats.attackDamage.ToString();
+        enemyStatsPanel.transform.Find("AttackSpeed").GetComponent<TextMeshProUGUI>().text =
+            "AttackSpeed: " + EnemyManager.I.enemyAttacker.stats.attackSpeed.ToString();
+        enemyStatsPanel.transform.Find("SpellDamage").GetComponent<TextMeshProUGUI>().text =
+            "SpellDamage: " + EnemyManager.I.enemyAttacker.stats.spellDamage.ToString();
+        enemyStatsPanel.transform.Find("SpellSpeed").GetComponent<TextMeshProUGUI>().text =
+            "SpellSpeed: " + EnemyManager.I.enemyAttacker.stats.spellSpeed.ToString();
+    }
+
+    private void UpdateStageNoUi()
+    {
+        stageNoText.text = "Stage: " + StageManager.I.currentStage.ToString() + "-" + StageManager.I.currentSubStage.ToString();
     }
 }

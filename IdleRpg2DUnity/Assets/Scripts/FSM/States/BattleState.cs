@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class BattleState : State
 {
-    private CharacterStats m_CurrentEnemyStats;
     public static Action<Attacker> OnBattleEnd;
     public BattleState(GameManager gameManager, StateMachine stateMachine) : base(gameManager, stateMachine)
     {
@@ -17,40 +16,14 @@ public class BattleState : State
 
         #region Subscribe To Events
 
-        OnBattleEnd += BattleEnd;
-
-        #endregion
-
-        #region Create Random Enemy Scriptable Object
-
-        Enemy currentEnemy = EnemyManager.I.GenerateRandomEnemy();
-        // TODO: m_CurrentEnemyStats = (CharacterStats) currentEnemy * CurrentRoundNo * GameManager.I.Difficulty;
-        m_CurrentEnemyStats = currentEnemy * 2f;
-        m_CurrentEnemyStats = CharacterStats.RandomName(m_CurrentEnemyStats, EnemyManager.I.GetPrefix(), EnemyManager.I.GetSuffix());
-
-        #endregion
-        
-        #region Instantiate Enemy and attach Components
-
-        GameObject enemyGo = GameObject.Instantiate(currentEnemy.prefab);
-        Attacker enemyAttacker = enemyGo.AddComponent<Attacker>();
-
-        #endregion
-
-        #region Find Player and attach Components
-
-        GameObject playerGo = gameManager.playerGo;
-        Attacker playerAttacker = playerGo.AddComponent<Attacker>();
+        EnemyManager.OnPlayerWin += OnPlayerWin;
 
         #endregion
 
         #region StartFight
 
-        enemyAttacker.Setup(m_CurrentEnemyStats, playerAttacker);
-        playerAttacker.Setup(gameManager.player.currentStats, enemyAttacker);
-
-        playerAttacker.StartAttacking();
-        enemyAttacker.StartAttacking();
+        EnemyManager.I.playerAttacker.StartAttacking();
+        EnemyManager.I.enemyAttacker.StartAttacking();
 
         #endregion
     }
@@ -76,14 +49,14 @@ public class BattleState : State
 
         #region Unsubscribe From Events
 
-        OnBattleEnd -= BattleEnd;
+        EnemyManager.OnPlayerWin -= OnPlayerWin;
 
         #endregion
     }
-
-    private void BattleEnd(Attacker obj)
+    
+    private void OnPlayerWin()
     {
-        Debug.Log("Battle End, " + obj.name + " won");
+        stateMachine.ChangeState(gameManager.transitionState);
     }
 
     public override void ChangeState()

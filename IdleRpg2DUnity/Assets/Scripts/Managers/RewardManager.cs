@@ -7,6 +7,8 @@ public class RewardManager : Singleton<RewardManager>
     [SerializeField] private List<Equipment> Level0Equipment;
     [SerializeField] private List<Equipment> Level1Equipment;
     
+    public int CurrentGold { get; private set; }
+    
     public Equipment GenerateRandomEquipment(int level)
     {
         switch (level)

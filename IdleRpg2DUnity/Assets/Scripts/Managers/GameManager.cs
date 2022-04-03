@@ -16,21 +16,23 @@ public class GameManager : Singleton<GameManager>
     
     public BattleState battleState;
 
+    public TransitionStage transitionState;
+
     public Player player;
 
     public GameObject playerGo;
     
     [Header("Game Settings")]
-    public int DifficultyIncreasePerLevelAsPercentage = 10;
+    public float DifficultyIncreasePerLevelAsPercentage = 0.1f;
     
     private void Start()
     {
-        playerGo = new GameObject("Player");
-        player.InitStats();
+        playerGo = Instantiate(player.prefab);
         gameManagerStateMachine = new StateMachine();
 
         gameInitState = new GameInitState(this, gameManagerStateMachine);
         battleState = new BattleState(this, gameManagerStateMachine);
+        transitionState = new TransitionStage(this, gameManagerStateMachine);
 
         // Start the game
         gameManagerStateMachine.Initialize(gameInitState);

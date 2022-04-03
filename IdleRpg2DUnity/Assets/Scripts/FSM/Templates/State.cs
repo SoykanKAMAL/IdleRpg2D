@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,12 @@ public abstract class State
 {
     protected GameManager gameManager;
     protected StateMachine stateMachine;
+
+    public static Action OnStateChanged;
+    
+    public bool isAutoTransition = false;
+    public float autoTransitionTime = 0;
+    private float autoTransitionTimer = 0;
 
     protected State(GameManager gameManager, StateMachine stateMachine)
     {
@@ -18,10 +25,11 @@ public abstract class State
         DisplayOnUI(UiManager.Alignment.Left);
         
         //Debug
+        Debug.Log("------------------");
         Debug.Log("Entering state: " + this.GetType().Name);
         
         // Event Subscriptions
-        UiManager.OnEndCurrentState += ChangeState;
+        OnStateChanged += ChangeState;
     }
 
     public virtual void HandleInput()
@@ -36,7 +44,15 @@ public abstract class State
     
     public virtual void LogicUpdate()
     {
-        
+        if(isAutoTransition)
+        {
+            autoTransitionTimer += Time.deltaTime;
+            if(autoTransitionTimer >= autoTransitionTime)
+            {
+                autoTransitionTimer = 0;
+                ChangeState();
+            }
+        }
     }
 
     public virtual void PhysicsUpdate()
@@ -50,7 +66,7 @@ public abstract class State
         Debug.Log("Exiting state: " + this.GetType().Name);
         
         // Event Unsubscriptions
-        UiManager.OnEndCurrentState -= ChangeState;
+        OnStateChanged -= ChangeState;
     }
 
     protected void DisplayOnUI(UiManager.Alignment alignment)

@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d38e8085b613664e975e6429d32c944, type: 3}
   m_Name: Ork
   m_EditorClassIdentifier: 
-  name: Ork
+  name: Cyclops
   maxHealth: 200
   currentHealth: 200
   armor: 2
   attackDamage: 5
-  attackSpeed: 3
+  attackSpeed: 9999
   spellDamage: 60
-  spellSpeed: 7
-  prefab: {fileID: 2918009858445088012, guid: 7b6717c4c4d9b9e47a244070127ba1dc, type: 3}
+  spellSpeed: 999
+  prefab: {fileID: 1892420787937326, guid: b5cd439f0506f974097fbd0e4e29312f, type: 3}
+  nameGenerator: {fileID: 11400000, guid: 9eabda3ad746da04291ae925a8bc8ff1, type: 2}

@@ -25,7 +25,8 @@ public class GameInitState : State
 
     public override void ChangeState()
     {
-        stateMachine.ChangeState(gameManager.battleState);
+        base.ChangeState();
+        stateMachine.ChangeState(gameManager.transitionState);
     }
     
     public override void PhysicsUpdate()

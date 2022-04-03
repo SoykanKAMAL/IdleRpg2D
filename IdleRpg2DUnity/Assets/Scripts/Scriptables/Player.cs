@@ -1,14 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "GenericPlayer", menuName = "Characters/Player")]
-public class Player : ScriptableObject
+public class Player : CharacterStats
 {
     public int level;
     public float experience;
-    public CharacterStats baseStats;
-    [HideInInspector]public CharacterStats currentStats;
+    
+    public GameObject prefab;
+    public CharacterStats CurrentStats { get; private set; }
     public RpgStats rpgStats;
     
     [Header("Equipment Slots")] 
@@ -18,12 +20,16 @@ public class Player : ScriptableObject
     //public Helmet helmet;
     //public Shield shield;
     //public Accessory accessory;
-    
 
-    public void InitStats()
+    private void OnEnable()
     {
-        currentStats = ScriptableObject.CreateInstance<CharacterStats>();
-        currentStats.name = baseStats.name;
+        InitStats();
+    }
+
+    private void InitStats()
+    {
+        CurrentStats = ScriptableObject.CreateInstance<CharacterStats>();
+        CurrentStats.name = this.name;
         UpdateEquippedItems();
         UpdateStats();
     }
@@ -40,13 +46,13 @@ public class Player : ScriptableObject
 
     public void UpdateStats()
     {
-        currentStats.maxHealth = (int)((baseStats.maxHealth * Mathf.Pow(1.1f, rpgStats.Vitality)) + (CalculateBonus(EquipmentEffect.EffectType.IncreaseHealth) * currentStats.maxHealth));
-        currentStats.currentHealth = currentStats.maxHealth;
-        currentStats.armor = (int)((baseStats.armor * Mathf.Pow(1.1f, rpgStats.Dexterity)) + (CalculateBonus(EquipmentEffect.EffectType.IncreaseArmor) * currentStats.armor));
-        currentStats.attackDamage = (int)((baseStats.attackDamage * Mathf.Pow(1.1f, rpgStats.Strength)) + (CalculateBonus(EquipmentEffect.EffectType.IncreaseAttackDamage) * currentStats.attackDamage));
-        currentStats.attackSpeed = (baseStats.attackSpeed * Mathf.Pow(0.9f, rpgStats.Agility)) * (1 - CalculateBonus(EquipmentEffect.EffectType.IncreaseAttackSpeed));
-        currentStats.spellDamage = (int)((baseStats.spellDamage * Mathf.Pow(1.1f, rpgStats.Intelligence)) + (CalculateBonus(EquipmentEffect.EffectType.IncreaseSpellDamage) * currentStats.spellDamage));
-        currentStats.spellSpeed = (baseStats.spellSpeed * Mathf.Pow(0.9f, rpgStats.Wisdom)) * (1 - CalculateBonus(EquipmentEffect.EffectType.IncreaseSpellSpeed));
+        CurrentStats.maxHealth = (int)((this.maxHealth * Mathf.Pow(1.1f, rpgStats.Vitality)) + (CalculateBonus(EquipmentEffect.EffectType.IncreaseHealth) * CurrentStats.maxHealth));
+        CurrentStats.currentHealth = CurrentStats.maxHealth;
+        CurrentStats.armor = (int)((this.armor * Mathf.Pow(1.1f, rpgStats.Dexterity)) + (CalculateBonus(EquipmentEffect.EffectType.IncreaseArmor) * CurrentStats.armor));
+        CurrentStats.attackDamage = (int)((this.attackDamage * Mathf.Pow(1.1f, rpgStats.Strength)) + (CalculateBonus(EquipmentEffect.EffectType.IncreaseAttackDamage) * CurrentStats.attackDamage));
+        CurrentStats.attackSpeed = (this.attackSpeed * Mathf.Pow(0.9f, rpgStats.Agility)) * (1 - CalculateBonus(EquipmentEffect.EffectType.IncreaseAttackSpeed));
+        CurrentStats.spellDamage = (int)((this.spellDamage * Mathf.Pow(1.1f, rpgStats.Intelligence)) + (CalculateBonus(EquipmentEffect.EffectType.IncreaseSpellDamage) * CurrentStats.spellDamage));
+        CurrentStats.spellSpeed = (this.spellSpeed * Mathf.Pow(0.9f, rpgStats.Wisdom)) * (1 - CalculateBonus(EquipmentEffect.EffectType.IncreaseSpellSpeed));
     }
 
     private float CalculateBonus(EquipmentEffect.EffectType desiredEffect)
@@ -59,8 +65,13 @@ public class Player : ScriptableObject
                 if(cEffect.effectType == desiredEffect) bonus += cEffect.effectValue;
             }
         }
-        Debug.Log("DesiredEffect: " + desiredEffect + " Bonus: " + bonus);
         return bonus;
+    }
+    
+    public void Heal(int amount)
+    {
+        CurrentStats.currentHealth += amount;
+        if(CurrentStats.currentHealth > CurrentStats.maxHealth) CurrentStats.currentHealth = CurrentStats.maxHealth;
     }
     
 }
