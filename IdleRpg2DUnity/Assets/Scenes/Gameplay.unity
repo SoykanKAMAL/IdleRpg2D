@@ -1431,12 +1431,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 735011540}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 1494768556}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &737808523
 GameObject:
@@ -1572,6 +1572,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 737808523}
   m_CullTransparentMesh: 1
+--- !u!1 &739926491
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 739926492}
+  m_Layer: 0
+  m_Name: PlayerSpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &739926492
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739926491}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.03, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &837417636
 GameObject:
   m_ObjectHideFlags: 0
@@ -1747,7 +1777,7 @@ GameObject:
   - component: {fileID: 918712253}
   - component: {fileID: 918712254}
   m_Layer: 0
-  m_Name: EnemyManager
+  m_Name: EnemyManager (Singleton)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1943,7 +1973,7 @@ GameObject:
   - component: {fileID: 1126773823}
   - component: {fileID: 1126773824}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: GameManager (Singleton)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1977,6 +2007,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: fccd3bfbaefb51a49bdf2b683ff9a42b, type: 2}
   playerGo: {fileID: 0}
+  playerSpawnPoint: {fileID: 739926492}
   DifficultyIncreasePerLevelAsPercentage: 1.1
 --- !u!1 &1239182260
 GameObject:
@@ -2307,6 +2338,7 @@ Transform:
   - {fileID: 1755091260}
   - {fileID: 918712253}
   - {fileID: 1506217227}
+  - {fileID: 735011542}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2321,7 +2353,7 @@ GameObject:
   - component: {fileID: 1506217227}
   - component: {fileID: 1506217228}
   m_Layer: 0
-  m_Name: RewardManager
+  m_Name: RewardManager (Singleton)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2991,7 +3023,7 @@ GameObject:
   - component: {fileID: 1755091260}
   - component: {fileID: 1755091261}
   m_Layer: 0
-  m_Name: UiManager
+  m_Name: UiManager (Singleton)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
