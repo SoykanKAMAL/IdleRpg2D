@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d38e8085b613664e975e6429d32c944, type: 3}
-  m_Name: Ork
+  m_Name: Cyclops
   m_EditorClassIdentifier: 
   name: Cyclops
   maxHealth: 200
   currentHealth: 200
   armor: 2
   attackDamage: 5
-  attackSpeed: 9999
+  attackSpeed: 2
   spellDamage: 60
   spellSpeed: 999
   prefab: {fileID: 1892420787937326, guid: b5cd439f0506f974097fbd0e4e29312f, type: 3}
