@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,11 +16,14 @@ public class UiManager : Singleton<UiManager>
 
     [SerializeField] private TextMeshProUGUI leftText = null;
     [SerializeField] private TextMeshProUGUI rightText = null;
-
+    
+    public float GlobalAnimationTime = 0.5f;
     public Button endStateButton;
     public GameObject playerStatsPanel;
     public GameObject enemyStatsPanel;
     public TextMeshProUGUI stageNoText;
+    public GameObject mainInfoPanel;
+    public static Action OnNavigationButtonClicked;
 
     public void Display(State enteredState, Alignment alignment)
     {
@@ -38,11 +42,21 @@ public class UiManager : Singleton<UiManager>
     private void OnEnable()
     {
         endStateButton.onClick.AddListener(() => { State.OnStateChanged?.Invoke(); });
+        OnNavigationButtonClicked += OnNavigationButtonClickedHandler;
     }
 
     private void OnDisable()
     {
         endStateButton.onClick.RemoveAllListeners();
+        OnNavigationButtonClicked -= OnNavigationButtonClickedHandler;
+    }
+
+    private void OnNavigationButtonClickedHandler()
+    {
+        mainInfoPanel.transform.DOScaleY(0, GlobalAnimationTime/2f).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            mainInfoPanel.transform.DOScaleY(1, GlobalAnimationTime).SetEase(Ease.Linear);
+        });
     }
 
     private void Update()
