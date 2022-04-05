@@ -23,6 +23,7 @@ public class EquipmentEffect
 public abstract class Equipment : Mergeable
 {
     public new string name;
+    public Sprite sprite;
     public List<EquipmentEffect> Effects = new List<EquipmentEffect>();
     
     

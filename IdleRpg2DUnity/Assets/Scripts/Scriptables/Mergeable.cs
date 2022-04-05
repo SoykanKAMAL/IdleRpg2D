@@ -8,7 +8,7 @@ public abstract class Mergeable : ScriptableObject
     
     public Mergeable Merge(Mergeable other)
     {
-        if(this.GetType() == other.GetType())
+        if(this == other)
         {
             Debug.Log("Mergeable.Merge: Merging " + this.name + " and " + other.name);
             Debug.Log("Mergeable.Merge: Result is " + mergeResult.name);
