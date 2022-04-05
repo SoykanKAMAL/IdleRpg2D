@@ -22,7 +22,6 @@ public abstract class State
 
     public virtual void Enter()
     {
-        DisplayOnUI(UiManager.Alignment.Left);
         
         //Debug
         Debug.Log("------------------");
@@ -67,11 +66,6 @@ public abstract class State
         
         // Event Unsubscriptions
         OnStateChanged -= ChangeState;
-    }
-
-    protected void DisplayOnUI(UiManager.Alignment alignment)
-    {
-        UiManager.I.Display(this, alignment);
     }
     
     // ToString override

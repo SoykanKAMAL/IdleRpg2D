@@ -8,37 +8,15 @@ using UnityEngine.UI;
 
 public class UiManager : Singleton<UiManager>
 {
-    public enum Alignment
-    {
-        Left,
-        Right
-    }
-
-    [SerializeField] private TextMeshProUGUI leftText = null;
-    [SerializeField] private TextMeshProUGUI rightText = null;
-    
     public float GlobalAnimationTime = 0.5f;
     public Button endStateButton;
     public GameObject playerStatsPanel;
     public GameObject enemyStatsPanel;
     public TextMeshProUGUI stageNoText;
     public GameObject mainInfoPanel;
-    public static Action OnNavigationButtonClicked;
-
-    public void Display(State enteredState, Alignment alignment)
-    {
-        var name = enteredState.ToString();
-
-        if (alignment == Alignment.Left)
-        {
-            leftText.text = name;
-        }
-        else
-        {
-            rightText.text = name;
-        }
-    }
-
+    public static Action<float> OnNavigationButtonClicked;
+    public GameObject playerHealthBar;
+    public GameObject enemyHealthBar;
     private void OnEnable()
     {
         endStateButton.onClick.AddListener(() => { State.OnStateChanged?.Invoke(); });
@@ -51,21 +29,33 @@ public class UiManager : Singleton<UiManager>
         OnNavigationButtonClicked -= OnNavigationButtonClickedHandler;
     }
 
-    private void OnNavigationButtonClickedHandler()
+    private void OnNavigationButtonClickedHandler(float endVal)
     {
         mainInfoPanel.transform.DOScaleY(0, GlobalAnimationTime/2f).SetEase(Ease.Linear).OnComplete(() =>
         {
-            mainInfoPanel.transform.DOScaleY(1, GlobalAnimationTime).SetEase(Ease.Linear);
+            mainInfoPanel.transform.DOScaleY(endVal, GlobalAnimationTime).SetEase(Ease.Linear);
         });
     }
 
     private void Update()
     {
         ShowPlayerStats();
-        ShowEnemyStats();
+        //ShowEnemyStats();
         UpdateStageNoUi();
     }
 
+    public void TogglePlayerHealthBar(bool toggle)
+    {
+        playerHealthBar.transform.DOMoveY(2500, 1f).From().SetEase(Ease.Linear);
+        playerHealthBar.SetActive(toggle);
+    }
+    
+    public void ToggleEnemyHealthBar(bool toggle)
+    {
+        enemyHealthBar.transform.DOMoveY(2500, 1f).From().SetEase(Ease.Linear);
+        enemyHealthBar.SetActive(toggle);
+    }
+    
     private void ShowPlayerStats()
     {
         playerStatsPanel.SetActive(true);
@@ -73,8 +63,6 @@ public class UiManager : Singleton<UiManager>
             "---" + GameManager.I.player.CurrentStats.name.ToString() + "---";
         playerStatsPanel.transform.Find("MaxHealth").GetComponent<TextMeshProUGUI>().text =
             "MaxHealth: " + GameManager.I.player.CurrentStats.maxHealth.ToString();
-        playerStatsPanel.transform.Find("CurrentHealth").GetComponent<TextMeshProUGUI>().text =
-            "CurrentHealth: " + GameManager.I.player.CurrentStats.currentHealth.ToString();
         playerStatsPanel.transform.Find("Armor").GetComponent<TextMeshProUGUI>().text =
             "Armor: " + GameManager.I.player.CurrentStats.armor.ToString();
         playerStatsPanel.transform.Find("AttackDamage").GetComponent<TextMeshProUGUI>().text =

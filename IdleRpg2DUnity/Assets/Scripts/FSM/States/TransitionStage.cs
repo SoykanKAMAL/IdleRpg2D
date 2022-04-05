@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class TransitionStage : State
@@ -14,6 +15,10 @@ public class TransitionStage : State
         base.Enter();
         this.isAutoTransition = true;
         this.autoTransitionTime = 2f;
+        GameManager.I.playerGo.GetComponent<Animator>().SetTrigger("Run");
+        
+        GameManager.I.player.FullyHeal();
+        UiManager.I.TogglePlayerHealthBar(true);
 
         EnemyManager.I.SetupBattle();
         //Debug.Log("Transitioning from " + previousState.ToString());
@@ -37,6 +42,8 @@ public class TransitionStage : State
     public override void Exit()
     {
         base.Exit();
+        GameManager.I.playerGo.GetComponent<Animator>().SetTrigger("Idle");
+        UiManager.I.ToggleEnemyHealthBar(true);
     }
     
     public override void ChangeState()

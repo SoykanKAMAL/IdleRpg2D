@@ -15,15 +15,20 @@ public class Player : CharacterStats
     
     [Header("Equipment Slots")] 
     private List<Equipment> EquippedEquipments = new List<Equipment>();
-    public Weapon weapon;
-    //public Armor armor;
-    //public Helmet helmet;
-    //public Shield shield;
-    //public Accessory accessory;
+    public Weapon weaponEquipped;
+    public Armor armorEquipped;
+    public Helmet helmetEquipped;
+    public Shield shieldEquipped;
+    public Accessory accessoryEquipped;
 
     private void OnEnable()
     {
         InitStats();
+        weaponEquipped = null;
+        armorEquipped = null;
+        helmetEquipped = null;
+        shieldEquipped = null;
+        accessoryEquipped = null;
     }
 
     private void InitStats()
@@ -37,11 +42,11 @@ public class Player : CharacterStats
     private void UpdateEquippedItems()
     {
         EquippedEquipments.Clear();
-        if(weapon != null) EquippedEquipments.Add(weapon);
-        //if(armor != null) EquippedEquipments.Add(armor);
-        //if(helmet != null) EquippedEquipments.Add(helmet);
-        //if(shield != null) EquippedEquipments.Add(shield);
-        //if(accessory != null) EquippedEquipments.Add(accessory);
+        if(weaponEquipped != null) EquippedEquipments.Add(weaponEquipped);
+        if(armorEquipped != null) EquippedEquipments.Add(armorEquipped);
+        if(helmetEquipped != null) EquippedEquipments.Add(helmetEquipped);
+        if(shieldEquipped != null) EquippedEquipments.Add(shieldEquipped);
+        if(accessoryEquipped != null) EquippedEquipments.Add(accessoryEquipped);
     }
 
     public void UpdateStats()
@@ -73,5 +78,48 @@ public class Player : CharacterStats
         CurrentStats.currentHealth += amount;
         if(CurrentStats.currentHealth > CurrentStats.maxHealth) CurrentStats.currentHealth = CurrentStats.maxHealth;
     }
+    
+    public void FullyHeal()
+    {
+        CurrentStats.currentHealth = CurrentStats.maxHealth;
+    }
+    
+    public void IncreaseStrength()
+    {
+        rpgStats.Strength++;
+        UpdateStats();
+    }
+    
+    public void IncreaseDexterity()
+    {
+        rpgStats.Dexterity++;
+        UpdateStats();
+    }
+    
+    public void IncreaseIntelligence()
+    {
+        rpgStats.Intelligence++;
+        UpdateStats();
+    }
+    
+    public void IncreaseWisdom()
+    {
+        rpgStats.Wisdom++;
+        UpdateStats();
+    }
+    
+    public void IncreaseVitality()
+    {
+        rpgStats.Vitality++;
+        UpdateStats();
+    }
+    
+    public void IncreaseAgility()
+    {
+        rpgStats.Agility++;
+        UpdateStats();
+    }
+    
+    
     
 }

@@ -12,6 +12,8 @@ public class Attacker : MonoBehaviour
     public Action OnAttack;
     public Action OnGetHit;
     public Action OnDeath;
+
+    public float spellTimer = 0f;
     
     public Attacker Setup(CharacterStats stats, Attacker enemy)
     {
@@ -23,6 +25,7 @@ public class Attacker : MonoBehaviour
 
     private void OnEnable()
     {
+        spellTimer = 0f;
         // OnBattleEnd event destroy this
         BattleState.OnBattleEnd += Attacker_OnBattleEnd;
         if(TryGetComponent<AttackAnimations>(out var attackAnimations))  attackAnimations.SetupAnimations(this);
@@ -35,6 +38,8 @@ public class Attacker : MonoBehaviour
 
     public void StartAttacking()
     {
+        StopAllCoroutines();
+        spellTimer = 0f;
         StartCoroutine(BasicAttack());
         StartCoroutine(SpellAttack());
     }
@@ -65,6 +70,7 @@ public class Attacker : MonoBehaviour
         yield return new WaitForSeconds(stats.spellSpeed);
         if (enemy != null)
         {
+            spellTimer = 0;
             enemy.TakeDamage(stats.spellDamage);
             Debug.Log("----------------------------------------------------");
             Debug.Log(this.stats.name + " casted a spell on " + enemy.stats.name + " for " + Mathf.Clamp(stats.spellDamage - enemy.stats.armor, 1, int.MaxValue) + " damage, " + enemy.stats.name + " has " + enemy.stats.currentHealth + " health left.");
@@ -76,5 +82,10 @@ public class Attacker : MonoBehaviour
     {
         StopAllCoroutines();
         //Destroy(this);
+    }
+
+    private void Update()
+    {
+        spellTimer += Time.deltaTime;
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class GameInitState : State
@@ -37,6 +38,9 @@ public class GameInitState : State
     public override void Exit()
     {
         base.Exit();
+        GameManager.I.playerGo.GetComponent<Animator>().SetTrigger("Run");
+        GameManager.I.playerGo.transform.DOMoveX(-2.5f, 1f);
+        Camera.main.transform.DOMoveX(0, 1f);
     }
 
     public override bool Equals(object obj)

@@ -11,6 +11,7 @@ public class AnimatedButton : MonoBehaviour, IPointerDownHandler
 {
     public UnityEvent OnTap;
     public Transform animateTarget;
+    public float endVal;
     
     private Tween m_AnimationTween;
     private void Start()
@@ -20,7 +21,7 @@ public class AnimatedButton : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        UiManager.OnNavigationButtonClicked?.Invoke();
+        UiManager.OnNavigationButtonClicked?.Invoke(endVal);
         StartCoroutine(CallOnTap(UiManager.I.GlobalAnimationTime / 2f));
         m_AnimationTween.Restart();
     }

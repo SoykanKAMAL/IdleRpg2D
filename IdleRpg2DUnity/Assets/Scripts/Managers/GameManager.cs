@@ -22,14 +22,12 @@ public class GameManager : Singleton<GameManager>
 
     public GameObject playerGo;
     
-    public Transform playerSpawnPoint;
-    
     [Header("Game Settings")]
     public float DifficultyIncreasePerLevelAsPercentage = 0.1f;
     
     private void Start()
     {
-        playerGo = Instantiate(player.prefab, playerSpawnPoint.position, Quaternion.identity);
+        playerGo = Instantiate(player.prefab, new Vector3(-10,0,0), Quaternion.identity);
         gameManagerStateMachine = new StateMachine();
 
         gameInitState = new GameInitState(this, gameManagerStateMachine);

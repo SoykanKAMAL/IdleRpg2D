@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -11,6 +12,7 @@ public class EnemyManager : Singleton<EnemyManager>
     [SerializeField]private List<string> Suffixes = new List<string>();
 
     public GameObject enemyGO;
+    public Enemy currentEnemy;
     public Attacker enemyAttacker;
     public Attacker playerAttacker;
 
@@ -28,14 +30,15 @@ public class EnemyManager : Singleton<EnemyManager>
         
         #region Create Random Enemy Scriptable Object
 
-        Enemy currentEnemy = EnemyManager.I.GenerateRandomEnemy();
+        currentEnemy = EnemyManager.I.GenerateRandomEnemy();
         //currentEnemy = CharacterStats.RandomName(currentEnemy, EnemyManager.I.GetPrefix(), EnemyManager.I.GetSuffix());
 
         #endregion
     
         #region Instantiate Enemy and attach Components
 
-        enemyGO = GameObject.Instantiate(currentEnemy.prefab);
+        enemyGO = GameObject.Instantiate(currentEnemy.prefab, new Vector3(10f, 0, 0), Quaternion.identity);
+        enemyGO.transform.DOMoveX(2.5f, 2.5f);
         enemyAttacker = enemyGO.AddComponent<Attacker>();
 
         #endregion

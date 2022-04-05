@@ -11,11 +11,13 @@ public class InventorySlot : MonoBehaviour
     public Color slotEmptyColor;
     public Color slotFullColor;
     public GameObject highlight;
-    public Transform itemPlaceholder;
     public Image backgroundImage;
-    
+    public bool isPlayerSlot;
+    public Equipment targetType;
+    public Transform itemPlaceholder;
     private RectTransform rectTransform;
-    public bool isHighlighted;
+    private bool isHighlighted;
+    
     // Start is called before the first frame update
     void Start()
     {

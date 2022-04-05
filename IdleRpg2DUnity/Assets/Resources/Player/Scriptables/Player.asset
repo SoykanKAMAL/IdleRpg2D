@@ -19,9 +19,13 @@ MonoBehaviour:
   attackDamage: 15
   attackSpeed: 1.5
   spellDamage: 100
-  spellSpeed: 999
+  spellSpeed: 10
   level: 1
   experience: 0
   prefab: {fileID: 1892420787937326, guid: 8cc81305d37e7f546ac8b6604aca1497, type: 3}
   rpgStats: {fileID: 11400000, guid: ed666c90a8436b246adc2dfbf1ab5a55, type: 2}
-  weapon: {fileID: 11400000, guid: 1c0448fc38d1b6d40b1c89642a1784e8, type: 2}
+  weaponEquipped: {fileID: 0}
+  armorEquipped: {fileID: 0}
+  helmetEquipped: {fileID: 0}
+  shieldEquipped: {fileID: 0}
+  accessoryEquipped: {fileID: 0}
