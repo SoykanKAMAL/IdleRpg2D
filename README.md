@@ -1,5 +1,5 @@
 # IdleRpg2d
-<h3>Made by Soykan Göksel Kamal in 3 days</h3>
+<h3>Made by Soykan Göksel Kamal</h3>
 
 
 <h1>Gameplay Video</h1>
