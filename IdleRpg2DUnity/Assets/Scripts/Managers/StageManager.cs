@@ -7,15 +7,18 @@ public class StageManager : Singleton<StageManager>
 {
     public int currentStage = 1;
     public int currentSubStage = 1;
+    
+    public static Action OnPlayerWin;
+    public static Action OnPlayerLose;
 
     private void OnEnable()
     {
-        EnemyManager.OnPlayerWin += StageManager_OnPlayerWin;
+        OnPlayerWin += StageManager_OnPlayerWin;
     }
     
     private void OnDisable()
     {
-        EnemyManager.OnPlayerWin -= StageManager_OnPlayerWin;
+        OnPlayerWin -= StageManager_OnPlayerWin;
     }
 
     private void StageManager_OnPlayerWin()

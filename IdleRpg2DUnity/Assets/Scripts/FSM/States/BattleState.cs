@@ -16,14 +16,15 @@ public class BattleState : State
 
         #region Subscribe To Events
 
-        EnemyManager.OnPlayerWin += OnPlayerWin;
+        StageManager.OnPlayerWin += OnPlayerWin;
+        StageManager.OnPlayerLose += OnPlayerLose;
 
         #endregion
 
         #region StartFight
 
-        EnemyManager.I.playerAttacker.StartAttacking();
-        EnemyManager.I.enemyAttacker.StartAttacking();
+        BattleManager.I.playerAttacker.StartAttacking();
+        BattleManager.I.enemyAttacker.StartAttacking();
 
         #endregion
     }
@@ -49,12 +50,18 @@ public class BattleState : State
 
         #region Unsubscribe From Events
 
-        EnemyManager.OnPlayerWin -= OnPlayerWin;
+        StageManager.OnPlayerWin -= OnPlayerWin;
+        StageManager.OnPlayerLose -= OnPlayerLose;
 
         #endregion
     }
     
     private void OnPlayerWin()
+    {
+        stateMachine.ChangeState(gameManager.transitionState);
+    }
+    
+    private void OnPlayerLose()
     {
         stateMachine.ChangeState(gameManager.transitionState);
     }

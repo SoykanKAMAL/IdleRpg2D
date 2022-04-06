@@ -18,8 +18,8 @@ public class SpellBar : MonoBehaviour
         }
         else
         {
-            slider.maxValue = EnemyManager.I.currentEnemy.BattleStats.spellSpeed;
-            slider.value = EnemyManager.I.enemyAttacker.spellTimer;
+            slider.maxValue = BattleManager.I.currentEnemy.BattleStats.spellSpeed;
+            slider.value = BattleManager.I.enemyAttacker.spellTimer;
         }
     }
 }

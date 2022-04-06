@@ -20,7 +20,7 @@ public class TransitionStage : State
         GameManager.I.player.FullyHeal();
         UiManager.I.TogglePlayerHealthBar(true);
 
-        EnemyManager.I.SetupBattle();
+        BattleManager.I.SetupBattle();
         //Debug.Log("Transitioning from " + previousState.ToString());
     }
 

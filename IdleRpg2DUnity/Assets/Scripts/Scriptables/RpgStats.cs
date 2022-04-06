@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +19,15 @@ public class RpgStats : ScriptableObject
     public int Wisdom;
     // Increases attack speed
     public int Agility;
-    // Increases gold earned
-    public int Charisma;
-    
+
+    private void OnEnable()
+    {
+        CurrentPoints = 15;
+        Strength = 1;
+        Dexterity = 1;
+        Intelligence = 1;
+        Vitality = 1;
+        Wisdom = 1;
+        Agility = 1;
+    }
 }

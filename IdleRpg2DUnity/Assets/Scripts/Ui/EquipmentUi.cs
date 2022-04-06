@@ -15,19 +15,17 @@ public class EquipmentUi : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private bool isSelected = false;
     private Transform canvasTransform;
     private bool isRewarded = false;
-    private Image image;
+    public Image image;
     private Tween dropTween;
     private void Start()
     {
         dropTween = transform.DOMoveY(50, 1f).SetLoops(-1, LoopType.Yoyo).SetRelative(true).SetAutoKill(false).Pause();
         // Jump to random location within 20 pixels
-        transform.DOLocalJump(new Vector3(Random.Range(-200, 200), Random.Range(-25, 25), 0), 200f, 3, 1.5f).SetRelative(true).OnComplete(() =>
+        transform.DOLocalJump(new Vector3(Random.Range(-200, 125), Random.Range(0, 25), 0), 200f, 3, 1.5f).SetRelative(true).OnComplete(() =>
         {
             dropTween.Restart();
         });
-        image = GetComponent<Image>();
         canvasTransform = GameObject.FindGameObjectWithTag("Canvas").transform;
-        UpdateEquipment();
     }
 
     private void Update()
@@ -104,8 +102,19 @@ public class EquipmentUi : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         transform.DOKill();
     }
 
-    private void UpdateEquipment()
+    public void UpdateEquipment(Equipment newEquipment = null)
     {
+        if (newEquipment != null)
+        {
+            equipment = newEquipment;
+        }
+        if (equipment == null)
+        {
+            image.sprite = null;
+            image.color = Color.clear;
+            return;
+        }
         image.sprite = equipment.sprite;
+        image.color = Color.white;
     }
 }

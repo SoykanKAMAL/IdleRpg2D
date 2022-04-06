@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d38e8085b613664e975e6429d32c944, type: 3}
-  m_Name: Slime
+  m_Name: Ork
   m_EditorClassIdentifier: 
-  name: Slime
-  maxHealth: 100
-  currentHealth: 100
-  armor: 1
-  attackDamage: 3
-  attackSpeed: 2
-  spellDamage: 10
-  spellSpeed: 5
-  prefab: {fileID: 2918009858445088012, guid: 7b6717c4c4d9b9e47a244070127ba1dc, type: 3}
+  name: Ork
+  maxHealth: 120
+  currentHealth: 120
+  armor: 4
+  attackDamage: 14
+  attackSpeed: 5
+  spellDamage: 0
+  spellSpeed: 999
+  prefab: {fileID: 1892420787937326, guid: ea0df9f79950c524885fdeac9b24c46f, type: 3}
   nameGenerator: {fileID: 11400000, guid: 9eabda3ad746da04291ae925a8bc8ff1, type: 2}

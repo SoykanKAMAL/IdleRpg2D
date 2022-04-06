@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0785e291aa9e44ea85a1060a0fbc56, type: 3}
   m_Name: BalancedSword2
   m_EditorClassIdentifier: 
-  mergeResult: {fileID: 11400000}
+  mergeResult: {fileID: 11400000, guid: 8a0de204a63529d4cb0204c77340af42, type: 2}
   name: Mediocre Sword
   sprite: {fileID: 21300000, guid: 74819113ef926ab4d83c48119d631046, type: 3}
   Effects:

@@ -29,13 +29,13 @@ public class Player : CharacterStats
         helmetEquipped = null;
         shieldEquipped = null;
         accessoryEquipped = null;
+        UpdateEquippedItems();
     }
 
     private void InitStats()
     {
         CurrentStats = ScriptableObject.CreateInstance<CharacterStats>();
         CurrentStats.name = this.name;
-        UpdateEquippedItems();
         UpdateStats();
     }
 
@@ -51,6 +51,7 @@ public class Player : CharacterStats
 
     public void UpdateStats()
     {
+        UpdateEquippedItems();
         CurrentStats.maxHealth = (int)((this.maxHealth * Mathf.Pow(1.1f, rpgStats.Vitality)) + (CalculateBonus(EquipmentEffect.EffectType.IncreaseHealth) * CurrentStats.maxHealth));
         CurrentStats.currentHealth = CurrentStats.maxHealth;
         CurrentStats.armor = (int)((this.armor * Mathf.Pow(1.1f, rpgStats.Dexterity)) + (CalculateBonus(EquipmentEffect.EffectType.IncreaseArmor) * CurrentStats.armor));
@@ -83,43 +84,4 @@ public class Player : CharacterStats
     {
         CurrentStats.currentHealth = CurrentStats.maxHealth;
     }
-    
-    public void IncreaseStrength()
-    {
-        rpgStats.Strength++;
-        UpdateStats();
-    }
-    
-    public void IncreaseDexterity()
-    {
-        rpgStats.Dexterity++;
-        UpdateStats();
-    }
-    
-    public void IncreaseIntelligence()
-    {
-        rpgStats.Intelligence++;
-        UpdateStats();
-    }
-    
-    public void IncreaseWisdom()
-    {
-        rpgStats.Wisdom++;
-        UpdateStats();
-    }
-    
-    public void IncreaseVitality()
-    {
-        rpgStats.Vitality++;
-        UpdateStats();
-    }
-    
-    public void IncreaseAgility()
-    {
-        rpgStats.Agility++;
-        UpdateStats();
-    }
-    
-    
-    
 }

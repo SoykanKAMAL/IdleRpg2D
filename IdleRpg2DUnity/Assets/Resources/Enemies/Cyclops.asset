@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Cyclops
   m_EditorClassIdentifier: 
   name: Cyclops
-  maxHealth: 200
-  currentHealth: 200
+  maxHealth: 80
+  currentHealth: 80
   armor: 2
-  attackDamage: 5
-  attackSpeed: 2
-  spellDamage: 60
-  spellSpeed: 999
+  attackDamage: 8
+  attackSpeed: 3
+  spellDamage: 30
+  spellSpeed: 8
   prefab: {fileID: 1892420787937326, guid: b5cd439f0506f974097fbd0e4e29312f, type: 3}
   nameGenerator: {fileID: 11400000, guid: 9eabda3ad746da04291ae925a8bc8ff1, type: 2}

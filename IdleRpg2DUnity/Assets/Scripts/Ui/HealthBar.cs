@@ -21,9 +21,9 @@ public class HealthBar : MonoBehaviour
         }
         else
         {
-            slider.maxValue = EnemyManager.I.currentEnemy.BattleStats.maxHealth;
-            slider.value = EnemyManager.I.currentEnemy.BattleStats.currentHealth;
-            healthText.text = EnemyManager.I.currentEnemy.BattleStats.currentHealth + "/" + EnemyManager.I.currentEnemy.BattleStats.maxHealth;
+            slider.maxValue = BattleManager.I.currentEnemy.BattleStats.maxHealth;
+            slider.value = BattleManager.I.currentEnemy.BattleStats.currentHealth;
+            healthText.text = BattleManager.I.currentEnemy.BattleStats.currentHealth + "/" + BattleManager.I.currentEnemy.BattleStats.maxHealth;
         }
     }
 }

@@ -17,6 +17,7 @@ public class InventorySlot : MonoBehaviour
     public Transform itemPlaceholder;
     private RectTransform rectTransform;
     private bool isHighlighted;
+    public Image equippedIcon;
     
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,19 @@ public class InventorySlot : MonoBehaviour
 
     private void Update()
     {
+        if (isPlayerSlot)
+        {
+            if (equipmentUi != null)
+            {
+                equippedIcon.enabled = true;
+                equippedIcon.sprite = equipmentUi.Equipment.sprite;
+            }
+            else
+            {
+                equippedIcon.enabled = false;
+            }
+        }
+        
         highlight.SetActive(isHighlighted);
         var mousePos = Input.mousePosition;
         // Check if mouse is over the slot within 100 pixels

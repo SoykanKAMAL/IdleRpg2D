@@ -88,5 +88,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c61bf98812568549b8859476b0fcee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipment: {fileID: 11400000, guid: d95ca401b39199c47a14d2b4cafa369b, type: 2}
-  lastInventorySlot: {fileID: 0}
+  equipment: {fileID: 0}
+  image: {fileID: 1045816143796457192}

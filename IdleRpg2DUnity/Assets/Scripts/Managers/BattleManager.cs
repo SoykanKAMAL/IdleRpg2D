@@ -5,19 +5,16 @@ using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class EnemyManager : Singleton<EnemyManager>
+public class BattleManager : Singleton<BattleManager>
 {
     [SerializeField]private List<Enemy> SpawnableEnemies = new List<Enemy>();
-    [SerializeField]private List<string> Prefixes = new List<string>();
-    [SerializeField]private List<string> Suffixes = new List<string>();
 
-    public GameObject enemyGO;
-    public Enemy currentEnemy;
-    public Attacker enemyAttacker;
-    public Attacker playerAttacker;
+    public GameObject enemyGO { get; private set; }
+    public Enemy currentEnemy {get; private set;}
+    public Attacker enemyAttacker { get; private set; }
+    public Attacker playerAttacker {get; private set;}
 
-    public static Action OnPlayerWin;
-    public static Action OnPlayerLose;
+    
 
     public Enemy GenerateRandomEnemy()
     {
@@ -30,7 +27,7 @@ public class EnemyManager : Singleton<EnemyManager>
         
         #region Create Random Enemy Scriptable Object
 
-        currentEnemy = EnemyManager.I.GenerateRandomEnemy();
+        currentEnemy = BattleManager.I.GenerateRandomEnemy();
         //currentEnemy = CharacterStats.RandomName(currentEnemy, EnemyManager.I.GetPrefix(), EnemyManager.I.GetSuffix());
 
         #endregion
@@ -72,12 +69,12 @@ public class EnemyManager : Singleton<EnemyManager>
         if (winner == playerAttacker)
         {
             Debug.Log("Battle Ended, player won: " + winner.name);
-            OnPlayerWin?.Invoke();
+            StageManager.OnPlayerWin?.Invoke();
         }
         else
         {
             Debug.Log("Battle Ended, player lost: " + winner.name);
-            OnPlayerLose?.Invoke();
+            StageManager.OnPlayerLose?.Invoke();
         }
     }
 }
