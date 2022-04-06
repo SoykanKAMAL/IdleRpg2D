@@ -11,7 +11,7 @@ https://user-images.githubusercontent.com/58806238/161935531-abf6ee08-6164-4eca-
 
 <h1>Brief Information</h1>
 -This is a 2D idle rpg game demo<br>
--Created in Unity 2020.3.30(LTS)<br>
+-Created in Unity 2020.3.30(LTS), designed for mobile platform target resolution = <br>
 -Main Features: Endless stage based battles, endless upgrades, endless difficulty increase based on stage, Inventory system, Merge system, Rpg stats system, Equipment system, Parallax background<br>
 
 
@@ -27,4 +27,4 @@ https://user-images.githubusercontent.com/58806238/161935531-abf6ee08-6164-4eca-
 -State: <br>
 * Main gameplay loop is handled by state pattern. Each state has unique code bodies executed within them.
 
-<br><br> *ALl assets used are Free and their authors are credited in project folders.
+<br><br> *All assets used are Free and their authors are credited in project folders.
