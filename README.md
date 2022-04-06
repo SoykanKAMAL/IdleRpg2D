@@ -26,3 +26,5 @@ https://user-images.githubusercontent.com/58806238/161935531-abf6ee08-6164-4eca-
 
 -State: <br>
 * Main gameplay loop is handled by state pattern. Each state has unique code bodies executed within them.
+
+<br><br> *ALl assets used are Free and their authors are credited in project folders.
